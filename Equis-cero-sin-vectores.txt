@@ -1,0 +1,62 @@
+        String xo = "123456789";
+        int posicion, jugador = 1;
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            for (int i = 0; i < 9; i++) {
+                System.out.print("| " + xo.charAt(i) + " |");
+                if (i == 2 || i == 5 || i == 8) {
+                    System.out.println("");
+                }
+            }
+
+            do {
+
+                System.out.print("Jugador " + jugador + " que posicion quiere? ");
+                posicion = sc.nextInt();
+            } while (posicion < 0 || posicion > 9);
+
+            if (xo.contains(String.valueOf(posicion))) {
+                if (jugador == 1) {
+                    xo = xo.replace(String.valueOf(posicion), "X");
+                    jugador = 2;
+                } else {
+                    xo = xo.replace(String.valueOf(posicion), "O");
+                    jugador = 1;
+                }
+            } else {
+                System.out.println("Posicion ocupada.");
+            }
+
+            if (xo.charAt(0) == xo.charAt(1) && xo.charAt(1) == xo.charAt(2)) {
+                System.out.println("Gano el jugador "
+                        + xo.charAt(1));
+                for (int i = 0; i < 9; i++) {
+                    System.out.print("| " + xo.charAt(i) + " |");
+                    if (i == 2 || i == 5 || i == 8) {
+                        System.out.println("");
+                    }
+                }
+
+                break;
+            }
+
+            int vacios = 0;
+            for (int i = 0; i < 9; i++) {
+                if (xo.charAt(i) != 'X' && xo.charAt(i) != 'O') {
+                    vacios++;
+                }
+            }
+
+            if (vacios == 0) {
+                System.out.println("EMPATE!!");
+                for (int i = 0; i < 9; i++) {
+                    System.out.print("| " + xo.charAt(i) + " |");
+                    if (i == 2 || i == 5 || i == 8) {
+                        System.out.println("");
+                    }
+                }
+                break;
+            }
+
+        }
