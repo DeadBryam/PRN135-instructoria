@@ -1,0 +1,23 @@
+        int tamanio;
+
+        tamanio = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tamanio"));
+
+        for (int i = 0; i <= tamanio; i++) {
+            for (int k = 0; k < tamanio - i; k++) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println("");
+        }
+
+        for (int i = 0; i <= tamanio; i++) {
+            for (int k = 0; k <= i; k++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= tamanio - i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println("");
+        }

@@ -1,0 +1,20 @@
+        Scanner sc = new Scanner(System.in);
+        int numero, base;
+        String binario = "";
+
+        System.out.print("Ingrese un numero: ");
+        numero = sc.nextInt();
+
+        System.out.print("Ingrese la base: ");
+        base = sc.nextInt();
+
+        do {
+            int residuo;
+            residuo = numero % base;
+            binario = residuo + binario;
+            numero = (numero - residuo) / base;
+        } while (numero > (base - 1));
+
+        binario = numero + binario;
+
+        System.out.println("El numero en base " + base + " es: " + binario);
