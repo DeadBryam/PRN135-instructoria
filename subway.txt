@@ -1,4 +1,3 @@
-{
         //normal,blanco,integral
         double pan[] = {1, 1.5, 2};
         //parmesano,blanco,americano
