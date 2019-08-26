@@ -1,0 +1,65 @@
+{
+        //normal,blanco,integral
+        double pan[] = {1, 1.5, 2};
+        //parmesano,blanco,americano
+        double queso[] = {0.6, 0.8, 1};
+        //pollo,pavo,albondigas,subway del dia
+        double especialidad[] = {1.5, 2, 1.35, 2.5};
+        //aceitunas,tocino,champi;ones,jamon de pavo,aderezos
+        double extras[] = {0.2, 0.5, 0.15, 0.35, 0};
+        int seleccion, cliente = 1;
+        double total = 0.0;
+
+        do {
+            JOptionPane.showMessageDialog(null, "Bienvenido cliente #" + cliente);
+            do {
+                seleccion = Integer.parseInt(JOptionPane.showInputDialog("Que tipo de pan quiere?"
+                        + "\n1.Normal\n2.Blanco\n3.Integral"));
+            } while (seleccion < 1 || seleccion > 3);
+
+            total += pan[seleccion - 1];
+
+            do {
+                seleccion = Integer.parseInt(JOptionPane.showInputDialog("Que tipo de queso quiere?"
+                        + "\n1.Parmesano\n2.Blanco\n3.Americano"));
+            } while (seleccion < 1 || seleccion > 3);
+
+            total += queso[seleccion - 1];
+
+            do {
+                seleccion = Integer.parseInt(JOptionPane.showInputDialog("Que tipo de queso quiere?"
+                        + "\n1.Pollo\n2.Pavo\n3.Albondigas\n4.Subway del dia"));
+            } while (seleccion < 1 || seleccion > 4);
+
+            if (seleccion == 4) {
+                total = 2.5;
+            } else {
+                total += queso[seleccion - 1];
+            }
+
+            do {
+                do {
+                    seleccion = Integer.parseInt(JOptionPane.showInputDialog("Que tipo de extra quiere?"
+                            + "\n1.Aceitunas\n2.Tocino\n3.Champi;ones\n4.Jamon de pavo\n5.Aderezos\n6.Ninguna"));
+                } while (seleccion < 1 || seleccion > 6);
+
+                if (seleccion == 6) {
+                    break;
+                }
+
+                total += extras[seleccion - 1];
+            } while (true);
+
+            JOptionPane.showMessageDialog(null, "El total es: " + total);
+            cliente++;
+            total = 0.0;
+
+            do {
+                seleccion = Integer.parseInt(JOptionPane.showInputDialog("Aun hay clientes?\n1.Si\n2.No"));
+            } while (seleccion < 1 || seleccion > 2);
+
+            if (seleccion == 2) {
+                break;
+            }
+
+        } while (true);
