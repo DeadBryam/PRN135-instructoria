@@ -1,0 +1,56 @@
+        Object registro[][];
+        Object encontrados[][];
+        int tamanio, cantidadEncontrados=0;
+        String busqueda;
+        int posicion;
+        
+        do {            
+            tamanio = Integer.parseInt(JOptionPane.showInputDialog("Cuantas personas quiere?"));
+        } while (tamanio <= 0);
+        
+        registro = new Object[tamanio][3];
+        
+        for (int i = 0; i < tamanio; i++) {
+            registro[i][0] = JOptionPane.showInputDialog("Ingrese nombre");
+            registro[i][1] = JOptionPane.showInputDialog("Ingrese carnet");
+            registro[i][2] = JOptionPane.showInputDialog("Ingrese el CUM");
+        }
+        
+        for (int i = 0; i < tamanio; i++) {
+            System.out.println("[NOMBRE: "+registro[i][0]+"\tCARNET: "+registro[i][1]
+            +"\tCUM: "+registro[i][2]+"]");
+        }
+        
+        busqueda = JOptionPane.showInputDialog("Ingrese valor de busqueda");
+        
+        for (int i = 0; i < tamanio; i++) {
+            if(String.valueOf(registro[i][0]).contains(busqueda)){
+                cantidadEncontrados++;
+            }
+        }
+        
+        encontrados = new Object[cantidadEncontrados][2];
+        
+        for (int i = 0, j = 0; i < tamanio; i++) {
+            if(String.valueOf(registro[i][0]).contains(busqueda)){
+                encontrados[j][0] = i; 
+                encontrados[j][1] = registro[i][0];
+                j++;
+            }
+        }
+        
+        System.out.println("ENCONTRADOS");
+        for (Object[] encontrado : encontrados) {
+            System.out.println(Arrays.toString(encontrado));
+        }
+        
+        posicion = Integer.parseInt(JOptionPane.showInputDialog("Cual de los alumnos quiere?"));
+        
+        System.out.println("SELECCIONADO: "+encontrados[posicion-1][1]);
+        
+        registro[Integer.parseInt(String.valueOf(encontrados[posicion-1][0]))][1] = JOptionPane.showInputDialog("Cual es el nuevo carnet");
+        registro[Integer.parseInt(String.valueOf(encontrados[posicion-1][0]))][2] = JOptionPane.showInputDialog("Cual es el nuevo CUM");
+    
+        for (Object[] reg : registro) {
+            System.out.println(Arrays.toString(reg));
+        }
