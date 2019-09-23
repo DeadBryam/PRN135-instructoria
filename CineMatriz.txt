@@ -1,0 +1,82 @@
+
+        boolean cine[][] = new boolean[5][9];
+        String historial = "";
+        int fila, columna, opcion;
+
+        do {
+            opcion = Integer.parseInt(JOptionPane.showInputDialog("Que quiere hacer?"
+                    + "\n1.Mostrar\n2.Agregar asiento\n3.Eliminar asiento\n4.Cambiar asiento\n5.Mostrar historial"));
+            switch (opcion) {
+                case 1:
+                    JOptionPane.showMessageDialog(null, Arrays.deepToString(cine)
+                            .replace("], ", "]\n").replace("[[", "[")
+                            .replace("]]", "]").replace("false", "Vacio")
+                            .replace("true", "Ocupado"));
+                    historial += "SE MOSTRO CINE\n";
+                    break;
+                case 2:
+                    do {
+                        fila = Integer.parseInt(JOptionPane.showInputDialog("Cual fila quiere?"));
+                    } while (fila > 5 || fila < 1);
+                    do {
+                        columna = Integer.parseInt(JOptionPane.showInputDialog("Cual columna quiere?"));
+                    } while (columna > 9 || columna < 1);
+
+                    if (cine[fila - 1][columna - 1]) {
+                        historial += "[" + fila + ", " + columna + "]\t ERROR AL COMPRAR [ASIENTO OCUPADO]\n";
+                        JOptionPane.showMessageDialog(null, "ASIENTO OCUPADO");
+                    } else {
+                        cine[fila - 1][columna - 1] = true;
+                        historial += "[" + fila + "," + columna + "]\tCOMPRO ASIENTRO\n";
+                        JOptionPane.showMessageDialog(null, "ASIENTO COMPRADO EXISTOSAMENTE");
+                    }
+                    break;
+                case 3:
+                    do {
+                        fila = Integer.parseInt(JOptionPane.showInputDialog("Cual fila quiere?"));
+                    } while (fila > 5 || fila < 1);
+                    do {
+                        columna = Integer.parseInt(JOptionPane.showInputDialog("Cual columna quiere?"));
+                    } while (columna > 9 || columna < 1);
+
+                    if (!cine[fila - 1][columna - 1]) {
+                        historial += "[" + fila + ", " + columna + "]\t ERROR AL ELIMINAR [ASIENTO VACIO]\n";
+                        JOptionPane.showMessageDialog(null, "EL ASIENTO YA ESTA VACIO");
+                    } else {
+                        cine[fila - 1][columna - 1] = false;
+                        historial += "[" + fila + ", " + columna + "]\t ASIENTO ELIMINADO\n";
+                        JOptionPane.showMessageDialog(null, "ASIENTO ELIMINADO EXISTOSAMENTE");
+                    }
+                    break;
+                case 4:
+                    int filaTemporal,
+                     columnaTemporal;
+                    do {
+                        filaTemporal = Integer.parseInt(JOptionPane.showInputDialog("En cual fila se encuentra?"));
+                    } while (filaTemporal > 5 || filaTemporal < 1);
+                    do {
+                        columnaTemporal = Integer.parseInt(JOptionPane.showInputDialog("En cual columna se encuentra?"));
+                    } while (columnaTemporal > 9 || columnaTemporal < 1);
+
+                    if (cine[filaTemporal - 1][columnaTemporal - 1]) {
+                        do {
+                            fila = Integer.parseInt(JOptionPane.showInputDialog("Cual fila nueva quiere?"));
+                        } while (fila > 5 || fila < 1);
+                        do {
+                            columna = Integer.parseInt(JOptionPane.showInputDialog("Cual columna nueva quiere?"));
+                        } while (columna > 9 || columna < 1);
+                        cine[filaTemporal - 1][columnaTemporal - 1] = false;
+                        cine[fila - 1][columna - 1] = true;
+                        historial += "[" + fila + ", " + columna + "]\t CAMBIO DE ASIENTO\n";
+                        JOptionPane.showMessageDialog(null, "CAMBIO REALIZADO CORRECTAMENTE");
+                    } else {
+                        historial += "[" + filaTemporal + ", " + columnaTemporal + "]\t ERROR AL CMABIAR [ASIENTO VACIO]\n";
+                        JOptionPane.showMessageDialog(null, "ASIENTO VACIO");
+                    }
+
+                    break;
+                case 5:
+                    JOptionPane.showMessageDialog(null, historial);
+                    break;
+            }
+        } while (true);
