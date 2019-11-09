@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PooExample",
+            "request": "launch",
+            "mainClass": "pooexample.PooExample"
+        }
+    ]
+}
